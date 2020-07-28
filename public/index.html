@@ -9,7 +9,22 @@
 </head>
 <body>
     <div id="app">
-
+        <div>
+            <h2>Euro's Converter</h2>
+            <form v-on:submit.prevent="convertFromEuros">
+                <label for="euros">Select the amount of Euros:</label>
+                <input id="euros" type="number" v-model.number="eurosToConvert" required>
+                <label for="currency">Select the Currency:</label>
+                <select id="currency" v-model="selectedCurrency" required>
+                    <option disabled value=""></option>
+                    <option v-for="(value, name, index) in rates" :value="value">{{name}}</option>
+                </select>
+                <input class="button" type="submit" value="Convert">
+            </form>
+            
+            <h3>Value: {{convertedEuros}}</h3>
+            
+         </div>
     </div>
 </body>
 </html>
