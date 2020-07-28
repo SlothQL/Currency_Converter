@@ -15,7 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
         },
 
         computed: {
-
+            convertFromEuros: function() {
+                return this.calculate().toFixed(2);
+            }
         },
         methods: {
             fetchCurrencies: function() {
@@ -24,8 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     .then(data => this.rates = data.rates)
             },
 
-            convertFromEuros: function() {
-                return this.convertedEuros = this.eurosToConvert * this.selectedCurrency
+            calculate: function() {
+                return this.convertedEuros = this.eurosToConvert * this.selectedCurrency;
             }
         }
     })
