@@ -8,9 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
             eurosToStart: 0,
             intoCurrency: null,
             convertedEuros: 0,
+            convertedMoney: 0.00,
             currencyToStart: null,
             moneyToConvert: 0,
-            convertedMoney: 0
+            formattedNumber: ''
         },
 
         mounted: function() {
@@ -38,7 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
             },
 
             convert: function() {
-                return this.convertedMoney = this.moneyToConvert / this.currencyToStart;
+                this.convertedMoney = this.moneyToConvert / this.currencyToStart;
+                return this.formattedNumber = this.convertedMoney.toFixed(2);
             }
         }
     })
