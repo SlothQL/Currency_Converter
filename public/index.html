@@ -26,21 +26,19 @@
                 <h4>Value {{convertFromEuros}}</h3>
             </form>
             
-            <form class="form" v-on:submit.prevent="convert">
+            <form class="form">
                 <h3>Convert into Euros</h3>
 
                 <label for="currencyToEuros">Select the Currency:</label>
                 <select id="currencyToEuros" v-model="currencyToStart" required>
-                    <option disabled value=""></option>
+                    <option disabled value="0"></option>
                     <option v-for="(value, name) in rates" :value="value">{{name}}</option>
                 </select>
 
                 <label for="amountMoney">How much:</label>
                 <input id="amountMoney" type="number" v-model.number="moneyToConvert" required>
 
-                <input type="submit" value="Convert into €">
-
-                <h4>Value {{formattedNumber}}</h3>
+                <h4>Value {{convertToEuros}}</h3>
             </form>
             
             

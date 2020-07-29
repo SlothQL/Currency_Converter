@@ -7,9 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
             rates: {},
             eurosToStart: 0,
             intoCurrency: null,
-            convertedEuros: 0,
-            convertedMoney: 0.00,
-            currencyToStart: null,
+            currencyToStart: 0,
             moneyToConvert: 0,
             formattedNumber: ''
         },
@@ -20,11 +18,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         computed: {
             convertFromEuros: function() {
-                return this.calculate().toFixed(2);
+                return (this.eurosToStart * this.intoCurrency).toFixed(2);
             },
 
             convertToEuros: function() {
-                return this.convert().toFixed(2);
+                if (this.currencyToStart === 0) {
+                    return (0).toFixed(2)
+                }
+                return (this.moneyToConvert / this.currencyToStart).toFixed(2);
             }
         },
         methods: {
@@ -33,15 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     .then(response => response.json())
                     .then(data => this.rates = data.rates)
             },
-
-            calculate: function() {
-                return this.convertedEuros = this.eurosToStart * this.intoCurrency;
-            },
-
-            convert: function() {
-                this.convertedMoney = this.moneyToConvert / this.currencyToStart;
-                return this.formattedNumber = this.convertedMoney.toFixed(2);
-            }
         }
     })
 })
